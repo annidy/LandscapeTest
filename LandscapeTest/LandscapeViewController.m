@@ -89,17 +89,17 @@
 }
 
 
-//- (BOOL)shouldAutorotate {
-//      return YES;
-//}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-     return UIInterfaceOrientationMaskLandscapeLeft;
+- (BOOL)shouldAutorotate {
+      return NO;
 }
 
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-//     return UIInterfaceOrientationLandscapeLeft;
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+//     return UIInterfaceOrientationMaskLandscapeLeft;
 //}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+     return UIInterfaceOrientationLandscapeLeft;
+}
 
 - (void)setInterfaceOrientation:(UIDeviceOrientation)orientation {
   if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
