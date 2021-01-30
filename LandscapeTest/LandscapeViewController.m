@@ -8,6 +8,7 @@
 #import "LandscapeViewController.h"
 #import "Aspects.h"
 #import <objc/runtime.h>
+#import "Router.h"
 
 @interface LandscapeViewController ()
 @property UIStackView *view;
@@ -25,6 +26,11 @@
     UILabel *label = [[UILabel alloc] init];
     label.text = @"This is Landescape";
     [self.view addArrangedSubview:label];
+    
+    UIButton *portraitBtn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [portraitBtn setTitle:@"打开竖屏" forState:UIControlStateNormal];
+    [portraitBtn addTarget:self action:@selector(navToPortrait) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addArrangedSubview:portraitBtn];
 
     UIButton *close = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [close setTitle:@"关闭" forState:UIControlStateNormal];
@@ -55,6 +61,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)navToPortrait {
+    [[Router shared] navigateTo:@"ViewController"];
+}
+
 - (void)willMoveToParentViewController:(UIViewController *)parent {
     if (parent) {
         // push in
@@ -63,7 +73,7 @@
             self.naviToken = [navi aspect_hookSelector:@selector(supportedInterfaceOrientations) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
                 NSInvocation *invocation = info.originalInvocation;
                 [invocation invoke];
-                UIInterfaceOrientationMask ret = UIInterfaceOrientationMaskLandscapeLeft;
+                UIInterfaceOrientationMask ret = navi.topViewController.supportedInterfaceOrientations;
                 [invocation setReturnValue:&ret];
             } error:NULL];
         }
