@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-
+@property BOOL isLandscape;
 @end
 
 @implementation AppDelegate
@@ -37,6 +37,10 @@
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    return  UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft;
+    if (self.isLandscape) {
+        return  UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft;
+    } else {
+        return  UIInterfaceOrientationMaskPortrait;
+    }
 }
 @end

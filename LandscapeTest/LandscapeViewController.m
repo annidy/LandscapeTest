@@ -7,6 +7,7 @@
 
 #import "LandscapeViewController.h"
 #import "Aspects.h"
+#import <objc/runtime.h>
 
 @interface LandscapeViewController ()
 @property UIStackView *view;
@@ -34,10 +35,19 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setValue:@1 forKey:@"isLandscape"];
+    
     [[UIDevice currentDevice] setValue:@(UIDeviceOrientationLandscapeLeft) forKey:@"orientation"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setValue:@0 forKey:@"isLandscape"];
+
+    
     [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
 }
 
@@ -57,6 +67,8 @@
                 [invocation setReturnValue:&ret];
             } error:NULL];
         }
+        
+    
     } else {
         // pop out
         [self.naviToken remove];
