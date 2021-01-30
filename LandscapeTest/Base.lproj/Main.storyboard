@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="25P-TS-n1l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KuI-52-urw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -32,9 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8l-xC-YbC">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8l-xC-YbC">
                                 <rect key="frame" x="169" y="399" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="打开横屏页"/>
                                 <connections>
                                     <action selector="openLandescapeSence" destination="IYE-O3-RI9" eventType="touchUpInside" id="0vu-nb-RlU"/>
@@ -43,6 +42,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wOH-ne-YCk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="P8l-xC-YbC" firstAttribute="centerY" secondItem="wOH-ne-YCk" secondAttribute="centerY" id="6Yk-jQ-sGM"/>
+                            <constraint firstItem="P8l-xC-YbC" firstAttribute="centerX" secondItem="wOH-ne-YCk" secondAttribute="centerX" id="Xhh-sk-nxG"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item A" id="jUE-Hp-SbY"/>
                 </viewController>
@@ -50,10 +53,27 @@
             </objects>
             <point key="canvasLocation" x="-665" y="-428"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="czR-i1-MM8">
+            <objects>
+                <navigationController id="KuI-52-urw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hvB-RA-d4Y">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="25P-TS-n1l" kind="relationship" relationship="rootViewController" id="Eno-ZW-fTp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tol-NE-bM1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2309" y="-400"/>
+        </scene>
         <!--Base Tab Bar View Controller-->
         <scene sceneID="xm8-A0-u7k">
             <objects>
                 <tabBarController hidesBottomBarWhenPushed="YES" id="25P-TS-n1l" customClass="BaseTabBarViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xJN-Rd-R8Y"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Up8-L8-zGc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -66,7 +86,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kw-XR-Ihl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1555" y="-125"/>
+            <point key="canvasLocation" x="-1501" y="-474"/>
         </scene>
     </scenes>
     <resources>

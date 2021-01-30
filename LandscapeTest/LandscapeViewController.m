@@ -10,6 +10,9 @@
 
 @interface LandscapeViewController ()
 @property UIStackView *view;
+@property BOOL isShow;
+@property id<AspectToken> naviToken;
+
 @end
 
 @implementation LandscapeViewController
@@ -28,11 +31,14 @@
     [self.view addArrangedSubview:close];
 }
 
-- (void)didMoveToParentViewController:(UIViewController *)parent {
-    [super didMoveToParentViewController:parent];
-//    if (parent) {
-//        [self setInterfaceOrientation:UIDeviceOrientationLandscapeLeft];
-//    }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationLandscapeLeft) forKey:@"orientation"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
 }
 
 - (void)dismiss {
@@ -40,46 +46,21 @@
 }
 
 - (void)willMoveToParentViewController:(UIViewController *)parent {
-    
-//    [self setInterfaceOrientation:UIDeviceOrientationLandscapeLeft];
-
-//    if ([parent isKindOfClass:[UINavigationController class]]) {
-//        UINavigationController *navi = (UINavigationController *)parent;
-//        [navi aspect_hookSelector:@selector(supportedInterfaceOrientations) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-//            NSInvocation *invocation = info.originalInvocation;
-//            [invocation invoke];
-//            UIInterfaceOrientationMask ret = [self supportedInterfaceOrientations];
-//            [invocation setReturnValue:&ret];
-//        } error:NULL];
-//        [navi aspect_hookSelector:@selector(preferredInterfaceOrientationForPresentation) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-//            NSInvocation *invocation = info.originalInvocation;
-//            [invocation invoke];
-//            UIInterfaceOrientation ret = [self preferredInterfaceOrientationForPresentation];
-//            [invocation setReturnValue:&ret];
-//        } error:NULL];
-//        [navi aspect_hookSelector:@selector(shouldAutorotate) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-//            NSInvocation *invocation = info.originalInvocation;
-//            [invocation invoke];
-//            BOOL ret = YES;
-//            [invocation setReturnValue:&ret];
-//        } error:NULL];
-//    }
-//    
-//    [UIViewController aspect_hookSelector:@selector(preferredInterfaceOrientationForPresentation) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
-//        NSInvocation *invocation = info.originalInvocation;
-//        [invocation invoke];
-//        UIInterfaceOrientation ret = [self preferredInterfaceOrientationForPresentation];
-//        [invocation setReturnValue:&ret];
-//    } error:NULL];
-    
-//    NSObject *appDelegate = [UIApplication sharedApplication].delegate;
-//    [appDelegate aspect_hookSelector:@selector(application:supportedInterfaceOrientationsForWindow:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info) {
-//        NSInvocation *invocation = info.originalInvocation;
-//        [invocation invoke];
-//        UIInterfaceOrientationMask ret = UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;;
-//        [invocation setReturnValue:&ret];
-//        
-//    } error:NULL];
+    if (parent) {
+        // push in
+        if ([parent isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navi = (UINavigationController *)parent;
+            self.naviToken = [navi aspect_hookSelector:@selector(supportedInterfaceOrientations) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> info){
+                NSInvocation *invocation = info.originalInvocation;
+                [invocation invoke];
+                UIInterfaceOrientationMask ret = UIInterfaceOrientationMaskLandscapeLeft;
+                [invocation setReturnValue:&ret];
+            } error:NULL];
+        }
+    } else {
+        // pop out
+        [self.naviToken remove];
+    }
 }
 
 - (void)loadView {
@@ -93,19 +74,10 @@
       return NO;
 }
 
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-//     return UIInterfaceOrientationMaskLandscapeLeft;
-//}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-     return UIInterfaceOrientationLandscapeLeft;
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
-- (void)setInterfaceOrientation:(UIDeviceOrientation)orientation {
-  if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-      [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:orientation]
-                                  forKey:@"orientation"];
-    }
-}
+
 
 @end
