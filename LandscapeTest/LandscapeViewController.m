@@ -38,14 +38,19 @@
     [self.view addArrangedSubview:close];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationLandscapeLeft) forKey:@"orientation"];
+}
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     
     NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setValue:@1 forKey:@"isLandscape"];
     
-    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationLandscapeLeft) forKey:@"orientation"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -53,8 +58,6 @@
     NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setValue:@0 forKey:@"isLandscape"];
 
-    
-    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
 }
 
 - (void)dismiss {
@@ -97,7 +100,7 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-     return UIInterfaceOrientationMaskLandscapeLeft;
+     return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 
