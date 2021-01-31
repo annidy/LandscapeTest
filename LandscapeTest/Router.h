@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 - (void)navigateTo:(NSString *)class;
+- (void)presentTo:(NSString *)class;
 
 @end
 

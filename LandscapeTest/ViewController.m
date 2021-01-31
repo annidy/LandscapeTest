@@ -27,6 +27,10 @@
     [landscapeBtn addTarget:self action:@selector(navToLandscape) forControlEvents:UIControlEventTouchUpInside];
     [self.view addArrangedSubview:landscapeBtn];
 
+    UIButton *close = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [close setTitle:@"关闭" forState:UIControlStateNormal];
+    [close addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addArrangedSubview:close];
 }
 
 - (void)navToLandscape {
@@ -37,5 +41,9 @@
     self.view = [[UIStackView alloc] initWithFrame:CGRectZero];
     self.view.axis = UILayoutConstraintAxisVertical;
     self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -39,6 +39,13 @@
     }
 }
 
+- (void)presentTo:(NSString *)class {
+    UIViewController *root = [self topMostController];
+    UIViewController *con = [self controllerForClass:class];
+    con.modalPresentationStyle = UIModalPresentationFullScreen;
+    [root presentViewController:con animated:YES completion:nil];
+}
+
 - (void)pushSoleController:(NSString *)class inside:(UINavigationController *)navi {
     NSMutableArray *exist = [navi.viewControllers mutableCopy];
     for (UIViewController *controller in navi.viewControllers) {

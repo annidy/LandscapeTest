@@ -33,10 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8l-xC-YbC">
-                                <rect key="frame" x="169" y="399" width="77" height="30"/>
-                                <state key="normal" title="打开横屏页"/>
+                                <rect key="frame" x="156" y="399" width="104" height="30"/>
+                                <state key="normal" title="navigate横屏页"/>
                                 <connections>
                                     <action selector="openLandescapeSence" destination="IYE-O3-RI9" eventType="touchUpInside" id="0vu-nb-RlU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yp-IQ-OtQ">
+                                <rect key="frame" x="159" y="433" width="99" height="30"/>
+                                <state key="normal" title="present横屏页"/>
+                                <connections>
+                                    <action selector="presentLandescapeSence" destination="IYE-O3-RI9" eventType="touchUpInside" id="Kgn-Uc-b02"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -44,7 +51,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="P8l-xC-YbC" firstAttribute="centerY" secondItem="wOH-ne-YCk" secondAttribute="centerY" id="6Yk-jQ-sGM"/>
+                            <constraint firstItem="5Yp-IQ-OtQ" firstAttribute="centerX" secondItem="P8l-xC-YbC" secondAttribute="centerX" id="Mnc-WT-tCe"/>
                             <constraint firstItem="P8l-xC-YbC" firstAttribute="centerX" secondItem="wOH-ne-YCk" secondAttribute="centerX" id="Xhh-sk-nxG"/>
+                            <constraint firstItem="5Yp-IQ-OtQ" firstAttribute="top" secondItem="P8l-xC-YbC" secondAttribute="bottom" constant="4" id="rJC-4c-weH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item A" id="jUE-Hp-SbY"/>

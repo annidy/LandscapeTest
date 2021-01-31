@@ -164,7 +164,9 @@ static char *isLandscapeKey;
      return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeLeft;
 }
 
-
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+     return UIInterfaceOrientationLandscapeLeft;
+}
 
 @end
 

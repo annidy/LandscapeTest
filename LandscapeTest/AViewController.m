@@ -33,6 +33,10 @@
     [[Router shared] navigateTo:@"LandscapeViewController"];
 }
 
+- (IBAction)presentLandescapeSence {
+    [[Router shared] presentTo:@"LandscapeViewController"];
+}
+
 //-(BOOL)shouldAutorotate{
 //    return YES;
 //}
@@ -41,8 +45,6 @@
 //     return UIInterfaceOrientationMaskAll;
 //}
 //
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-     return UIInterfaceOrientationLandscapeLeft;
-}
+
 
 @end
