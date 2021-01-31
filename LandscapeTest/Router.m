@@ -6,7 +6,6 @@
 //
 
 #import "Router.h"
-#import "RootNavigationViewController.h"
 
 @implementation Router
 

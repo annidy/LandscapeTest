@@ -20,7 +20,6 @@
 		91F23C2925C410CE00888F16 /* AViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C2825C410CE00888F16 /* AViewController.m */; };
 		91F23C2F25C4117100888F16 /* Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C2E25C4117100888F16 /* Router.m */; };
 		91F23C3525C4174100888F16 /* LandscapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C3425C4174100888F16 /* LandscapeViewController.m */; };
-		91F23C3B25C422CB00888F16 /* RootNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C3A25C422CB00888F16 /* RootNavigationViewController.m */; };
 		91F23C4125C426FC00888F16 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C4025C426FC00888F16 /* Aspects.m */; };
 		91F23C5025C432F700888F16 /* BaseTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F23C4F25C432F700888F16 /* BaseTabBarViewController.m */; };
 /* End PBXBuildFile section */
@@ -69,8 +68,6 @@
 		91F23C2E25C4117100888F16 /* Router.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Router.m; sourceTree = "<group>"; };
 		91F23C3325C4174100888F16 /* LandscapeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandscapeViewController.h; sourceTree = "<group>"; };
 		91F23C3425C4174100888F16 /* LandscapeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandscapeViewController.m; sourceTree = "<group>"; };
-		91F23C3925C422CB00888F16 /* RootNavigationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootNavigationViewController.h; sourceTree = "<group>"; };
-		91F23C3A25C422CB00888F16 /* RootNavigationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootNavigationViewController.m; sourceTree = "<group>"; };
 		91F23C3F25C426FC00888F16 /* Aspects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		91F23C4025C426FC00888F16 /* Aspects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		91F23C4E25C432F700888F16 /* BaseTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarViewController.h; sourceTree = "<group>"; };
@@ -144,8 +141,6 @@
 				91F23C3425C4174100888F16 /* LandscapeViewController.m */,
 				91F23C2D25C4117100888F16 /* Router.h */,
 				91F23C2E25C4117100888F16 /* Router.m */,
-				91F23C3925C422CB00888F16 /* RootNavigationViewController.h */,
-				91F23C3A25C422CB00888F16 /* RootNavigationViewController.m */,
 				91F23C3F25C426FC00888F16 /* Aspects.h */,
 				91F23C4025C426FC00888F16 /* Aspects.m */,
 				91F23C4E25C432F700888F16 /* BaseTabBarViewController.h */,
@@ -309,7 +304,6 @@
 				91F23C5025C432F700888F16 /* BaseTabBarViewController.m in Sources */,
 				91F23C4125C426FC00888F16 /* Aspects.m in Sources */,
 				91F23C2F25C4117100888F16 /* Router.m in Sources */,
-				91F23C3B25C422CB00888F16 /* RootNavigationViewController.m in Sources */,
 				91F23C3525C4174100888F16 /* LandscapeViewController.m in Sources */,
 				91F238C225C40CDA00888F16 /* SceneDelegate.m in Sources */,
 			);

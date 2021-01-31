@@ -10,6 +10,51 @@
 #import <objc/runtime.h>
 #import "Router.h"
 
+static char *isLandscapeKey;
+@implementation UIResponder (Landesacpe)
+
+- (BOOL)isLandscape {
+    NSNumber *isLandscape = objc_getAssociatedObject(self, &isLandscapeKey);
+    return [isLandscape boolValue];
+}
+
+- (void)setIsLandscape:(BOOL)isLandscape {
+    objc_setAssociatedObject(self, &isLandscapeKey, @(isLandscape), OBJC_ASSOCIATION_COPY);
+}
+
+- (UIInterfaceOrientationMask)landscape_application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if (self.isLandscape) {
+        return  UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft;
+    } else {
+        if ([self respondsToSelector:@selector(landscape_application:supportedInterfaceOrientationsForWindow:)]) {
+            return [self landscape_application:application supportedInterfaceOrientationsForWindow:window];
+        } else {
+            return [self orientationMaskFromInfo];
+        }
+    }
+}
+
+- (UIInterfaceOrientationMask)orientationMaskFromInfo {
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSURL *infoPath = [bundle URLForResource:@"Info" withExtension:@"plist"];
+    NSDictionary *infoDic = [NSDictionary dictionaryWithContentsOfURL:infoPath];
+    NSArray *orientations = infoDic[@"UISupportedInterfaceOrientations"];
+    if ([orientations isKindOfClass:[NSArray class]]) {
+        UIInterfaceOrientationMask mask = 0;
+        if ([orientations containsObject:@"UIInterfaceOrientationPortrait"]) {
+            mask |= UIInterfaceOrientationMaskPortrait;
+        }
+        if ([orientations containsObject:@"UIInterfaceOrientationLandscapeLeft"]) {
+            mask |= UIInterfaceOrientationLandscapeLeft;
+        }
+        
+        return mask;
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+@end
+
 @interface LandscapeViewController ()
 @property UIStackView *view;
 @property BOOL isShow;
@@ -19,6 +64,23 @@
 
 @implementation LandscapeViewController
 @dynamic view;
+
++ (void)load {
+    Class class = NSClassFromString(@"AppDelegate");
+    
+    SEL originalSelector = @selector(application:supportedInterfaceOrientationsForWindow:);
+    SEL swizzledSelector = @selector(landscape_application:supportedInterfaceOrientationsForWindow:);
+    
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    
+    BOOL success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+    if (success) {
+        class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,7 +143,6 @@
             } error:NULL];
         }
         
-    
     } else {
         // pop out
         [self.naviToken remove];
@@ -106,3 +167,8 @@
 
 
 @end
+
+
+
+
+
